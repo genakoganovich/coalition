@@ -4,7 +4,7 @@ if sys.platform=="win32":
 	import win32pdh
 	import win32pdhquery
 	import win32pdhutil
-	import _winreg
+	import winreg as _winreg
 
 # Parse the registry to find the localized perf counter name 
 def pdhTranslateEnglishCounter (counter):

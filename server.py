@@ -14,7 +14,7 @@ print(time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(time.time())))
 # Go to the script directory
 global installDir, dataDir
 if sys.platform=="win32":
-	import _winreg
+	import winreg as _winreg
 	# under windows, uses the registry setup by the installer
 	try:
 		hKey = _winreg.OpenKey (_winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\Mercenaries Engineering\\Coalition", 0, _winreg.KEY_READ)
@@ -420,8 +420,9 @@ class CState:
 			# Save a block of dict
 			def saveBlock (blockID, blockSize, keys, _dict, fo):
 				array = {}
-				for j in range (blockID*blockSize, min (len (keys), (blockID+1)*blockSize)):
-					key = keys[j]
+				keys_list = list(keys)
+				for j in range (blockID*blockSize, min (len (keys_list), (blockID+1)*blockSize)):
+					key = keys_list[j]
 					value = _dict.get (key) 
 					if value != None:
 						array[key] = value
@@ -1575,6 +1576,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_clearjobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Clear job "+str (jobId))
 			State.removeJob (int(jobId))
@@ -1583,6 +1586,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_resetjobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Reset job "+str (jobId))
 			State.resetJob (int(jobId))
@@ -1591,6 +1596,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_reseterrorjobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Reset error job "+str (jobId))
 			State.resetErrorJob (int(jobId))
@@ -1599,6 +1606,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_startjobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Start job "+str (jobId))
 			State.startJob (int(jobId))
@@ -1607,6 +1616,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_pausejobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Pause job "+str (jobId))
 			State.pauseJob (int(jobId))
@@ -1615,6 +1626,8 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_stopjobs (self, ids):
 		global State
+		if not ids:
+			return "0".encode('utf-8')
 		for jobId in ids:
 			output("Stop job "+str (jobId))
 			State.stopJob (int(jobId))
@@ -1747,7 +1760,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Update workers "+str (names)+" "+str(props)+" "+str(values))
 		except:
 			pass
-		if len(props) != len(values):
+		if not props or not values or len(props) != len(values):
 			return "0"
 		for i in range(0,len(props)):
 			prop = props[i]
@@ -2040,7 +2053,7 @@ def listenUDP():
 	while 1:
 		try:
 			data, addr = s.recvfrom (1024)
-			s.sendto ("roxor", addr)
+			s.sendto (b"roxor", addr)
 		except:
 			pass
 

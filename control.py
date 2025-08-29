@@ -114,7 +114,8 @@ elif action=="list":
 	data = response.read()
 	conn.close()
 
-	data = eval(data.decode())
+	import json
+	data = json.loads(data.decode())
 	vars=data["Vars"]
 	print(vars)
 	jobs=data["Jobs"]
