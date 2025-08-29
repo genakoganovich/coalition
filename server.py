@@ -1691,7 +1691,7 @@ class Master (xmlrpc.XMLRPC):
 			logFile.close ()
 		except IOError:
 			pass
-		return repr (log)
+		return repr(log).encode('utf-8')
 
 	def json_getworkers (self):
 		global State
@@ -1843,7 +1843,7 @@ class Workers(xmlrpc.XMLRPC):
 				if log != "" :
 					try:
 						logFile = open (getLogFilename (jobId), "a")
-						log = base64.decodestring(log)
+						log = base64.decodebytes(log.encode('utf-8')).decode('utf-8')
 						
 						# Filter the log progression message
 						progress = None

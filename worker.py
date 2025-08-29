@@ -300,10 +300,14 @@ class Worker:
             # Count log lines number till some treshold for looking on coldStart error
             lines += 1
 
-            # "" means EOF
-            if line == "":
+            # "" or b"" means EOF (Python 3 compatibility)
+            if line == "" or line == b"":
                 self.info ("end")
                 break
+
+            # Convert bytes to string for Python 3 compatibility
+            if isinstance(line, bytes):
+                line = line.decode('utf-8', errors='replace')
 
             debugRaw (line)
             self.LogLock.acquire()
