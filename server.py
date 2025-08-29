@@ -438,7 +438,7 @@ class CState:
 				yield True
 		
 			output("Write Jobs")
-			keys = self.Jobs.keys ()
+			keys = list(self.Jobs.keys ())
 			blockCount = (len (keys) + (blockSize-1)) // blockSize
 			pickle.dump (blockCount, fo)
 			for blockID in range(0, blockCount):
@@ -446,7 +446,7 @@ class CState:
 				yield True
 		
 			output("Write Workers")
-			keys = self.Workers.keys ()
+			keys = list(self.Workers.keys ())
 			blockCount = (len (keys) + (blockSize-1)) // blockSize
 			pickle.dump (blockCount, fo)
 			for blockID in range(0, blockCount):
@@ -1332,9 +1332,12 @@ class Master (xmlrpc.XMLRPC):
 					return result.decode('utf-8')
 				return result
 			
+			# Handle path decoding for Python 3 compatibility
+			path = request.path.decode('utf-8') if isinstance(request.path, bytes) else request.path
+			
 			# Addjob
 
-			if request.path == "/xmlrpc/addjob" or request.path == "/json/addjob":
+			if path == "/xmlrpc/addjob" or path == "/json/addjob":
 				parent = getArg ("parent", "0")
 				output("Debug: Parent >>"+str(parent))
 				title = getArg ("title", "New job")
@@ -1391,9 +1394,9 @@ class Master (xmlrpc.XMLRPC):
 				State.Jobs[id].URL = url
 				
 				State.update ()
-				return str(id)
+				return str(id).encode('utf-8')
 # Add Bulk Operation
-			elif request.path == "/xmlrpc/addjobbulk" or request.path == "/json/addjobbulk":
+			elif path == "/xmlrpc/addjobbulk" or path == "/json/addjobbulk":
 
 				parent = getArg ("parent", "0")
 				title = getArg ("title", "New job")
@@ -1439,7 +1442,7 @@ class Master (xmlrpc.XMLRPC):
 				State.update ()
 				return str(res)
 #End Bulk Operation
-			elif request.path == "/xmlrpc/addjobbulknew" or request.path == "/json/addjobbulknew":
+			elif path == "/xmlrpc/addjobbulknew" or path == "/json/addjobbulknew":
 
 				parent = getArg ("parent", "0")
 				title = getArg ("title", "New job")
@@ -1485,39 +1488,39 @@ class Master (xmlrpc.XMLRPC):
 				State.update ()
 				return str(res)
 #End Bulk Operation
-			elif request.path == "/json/getjobs":
+			elif path == "/json/getjobs":
 				return self.json_getjobs (int(getArg ("id", 0)), getArg ("filter", ""))
-			elif request.path == "/json/clearjobs":
+			elif path == "/json/clearjobs":
 				return self.json_clearjobs (request.args.get ("id"))
-			elif request.path == "/json/resetjobs":
+			elif path == "/json/resetjobs":
 				return self.json_resetjobs (request.args.get ("id"))
-			elif request.path == "/json/reseterrorjobs":
+			elif path == "/json/reseterrorjobs":
 				return self.json_reseterrorjobs (request.args.get ("id"))
-			elif request.path == "/json/startjobs":
+			elif path == "/json/startjobs":
 				return self.json_startjobs (request.args.get ("id"))
-			elif request.path == "/json/pausejobs":
+			elif path == "/json/pausejobs":
 				return self.json_pausejobs (request.args.get ("id"))
-			elif request.path == "/json/stopjobs":
+			elif path == "/json/stopjobs":
 				return self.json_stopjobs (request.args.get ("id"))
-			elif request.path == "/json/movejobs":
+			elif path == "/json/movejobs":
 				return self.json_movejobs (request.args.get ("id"), getArg ("dest", 0))
-			elif request.path == "/json/updatejobs":
+			elif path == "/json/updatejobs":
 				return self.json_updatejobs (request.args.get ("id"), request.args.get ("prop"),request.args.get ("value"))
-			elif request.path == "/json/getlog":
+			elif path == "/json/getlog":
 				return self.json_getlog (int(getArg ("id", 0)))
-			elif request.path == "/json/getworkers":
+			elif path == "/json/getworkers":
 				return self.json_getworkers ()
-			elif request.path == "/json/clearworkers":
+			elif path == "/json/clearworkers":
 				ids = request.args.get ("id", [])
 				decoded_ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
 				return self.json_clearworkers (decoded_ids)
-			elif request.path == "/json/stopworkers":
+			elif path == "/json/stopworkers":
 				return self.json_stopworkers (request.args.get ("id"))
-			elif request.path == "/json/startworkers":
+			elif path == "/json/startworkers":
 				return self.json_startworkers (request.args.get ("id"))
-			elif request.path == "/json/updateworkers":
+			elif path == "/json/updateworkers":
 				return self.json_updateworkers (request.args.get ("id"), request.args.get ("prop"),request.args.get ("value"))
-			elif request.path == "/json/getactivities":
+			elif path == "/json/getactivities":
 				return self.json_getactivities (int(getArg ("job", -1)), str(getArg ("worker", "")), int(getArg ("howlong", -1)))
 			else:
 				# return server.NOT_DONE_YET
@@ -1566,8 +1569,9 @@ class Master (xmlrpc.XMLRPC):
 				break
 			job = State.Jobs[job.Parent]
 		
-		output( '{ "Vars":'+repr(vars)+', "Jobs":'+jobs+', "Parents":'+repr(parents)+' }')
-		return '{ "Vars":'+repr(vars)+', "Jobs":'+jobs+', "Parents":'+repr(parents)+' }'
+		result = '{ "Vars":'+repr(vars)+', "Jobs":'+jobs+', "Parents":'+repr(parents)+' }'
+		output(result)
+		return result.encode('utf-8')
 
 	def json_clearjobs (self, ids):
 		global State
@@ -1575,7 +1579,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Clear job "+str (jobId))
 			State.removeJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_resetjobs (self, ids):
 		global State
@@ -1583,7 +1587,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Reset job "+str (jobId))
 			State.resetJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_reseterrorjobs (self, ids):
 		global State
@@ -1591,7 +1595,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Reset error job "+str (jobId))
 			State.resetErrorJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_startjobs (self, ids):
 		global State
@@ -1599,7 +1603,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Start job "+str (jobId))
 			State.startJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_pausejobs (self, ids):
 		global State
@@ -1607,7 +1611,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Pause job "+str (jobId))
 			State.pauseJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_stopjobs (self, ids):
 		global State
@@ -1615,7 +1619,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Stop job "+str (jobId))
 			State.stopJob (int(jobId))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_movejobs (self, ids, dest):
 		global State
@@ -1623,7 +1627,7 @@ class Master (xmlrpc.XMLRPC):
 			output("Move job "+str (jobId)+" in "+str(dest))
 			State.moveJob (int(jobId),int(dest))
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_updatejobs (self, ids, props, values):
 		global State
@@ -1668,7 +1672,7 @@ class Master (xmlrpc.XMLRPC):
 				except KeyError:
 					pass
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_getlog (self, jobId):
 		global State
@@ -1708,7 +1712,7 @@ class Master (xmlrpc.XMLRPC):
 		workers += "]"
 		
 		result = ('{ "Vars":'+repr(vars)+', "Workers":'+workers+'}')
-		return result
+		return result.encode('utf-8')
 
 	def json_clearworkers (self, names):
 		global State
@@ -1720,21 +1724,21 @@ class Master (xmlrpc.XMLRPC):
 			except KeyError:
 				pass
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_stopworkers (self, names):
 		global State
 		for name in names:
 			State.stopWorker (name)
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_startworkers (self, names):
 		global State
 		for name in names:
 			State.startWorker (name)
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	# update several workers props at once
 	def json_updateworkers (self, names, props, values):
@@ -1760,7 +1764,7 @@ class Master (xmlrpc.XMLRPC):
 				except KeyError:
 					pass
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 	def json_getactivities (self, job, worker, howlong):
 		global State
@@ -1783,7 +1787,7 @@ class Master (xmlrpc.XMLRPC):
 		activities += "]"
 		
 		result = ('{ "Vars":'+repr(vars)+', "Activities":'+activities+'}')
-		return result
+		return result.encode('utf-8')
 
 # Unauthenticated connection for workers
 class Workers(xmlrpc.XMLRPC):
@@ -1950,7 +1954,7 @@ class Workers(xmlrpc.XMLRPC):
 		except KeyError:
 			pass
 		State.update ()
-		return "1"
+		return "1".encode('utf-8')
 
 # Backup the DB
 # Erase master_db.maxBackup
