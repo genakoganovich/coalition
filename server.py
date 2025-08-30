@@ -1284,41 +1284,7 @@ class Master (xmlrpc.XMLRPC):
 
 	User = ""
 	
-	def render_GET(self, request):
-		# Handle GET requests for JSON endpoints
-		global State
-		if authenticate (request):
-			self.User = request.getUser ()
-			
-			def getArg (name, default):
-				key = name.encode() if isinstance(name, str) else name
-				value = request.args.get (key, [default])
-				result = value[0]
-				if isinstance(result, bytes):
-					return result.decode('utf-8')
-				return result
-			
-			# Handle GET requests for JSON endpoints only
-			if request.path.startswith(b'/json/'):
-				path = request.path.decode('utf-8') if isinstance(request.path, bytes) else request.path
-				if path == "/json/getjobs":
-					result = self.json_getjobs (int(getArg ("id", 0)), getArg ("filter", ""))
-					return result.encode('utf-8') if isinstance(result, str) else result
-				elif path == "/json/getworkers":
-					result = self.json_getworkers ()
-					return result.encode('utf-8') if isinstance(result, str) else result
-				elif path == "/json/getactivities":
-					result = self.json_getactivities (int(getArg ("job", -1)), str(getArg ("worker", "")), int(getArg ("howlong", -1)))
-					return result.encode('utf-8') if isinstance(result, str) else result
-				elif path == "/json/clearworkers":
-					ids = request.args.get (b"id", [])
-					decoded_ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
-					result = self.json_clearworkers (decoded_ids)
-					return result.encode('utf-8') if isinstance(result, str) else result
-		
-		# For all other GET requests, return method not allowed
-		request.setResponseCode(405)
-		return b'Method Not Allowed'
+
 
 	def render (self, request):
 		global State
@@ -1336,6 +1302,7 @@ class Master (xmlrpc.XMLRPC):
 			# Handle path decoding for Python 3 compatibility
 			path = request.path.decode('utf-8') if isinstance(request.path, bytes) else request.path
 			
+
 			# Addjob
 
 			if path == "/xmlrpc/addjob" or path == "/json/addjob":
@@ -1395,6 +1362,7 @@ class Master (xmlrpc.XMLRPC):
 				State.Jobs[id].URL = url
 				
 				State.update ()
+				request.setResponseCode(200)
 				return str(id).encode('utf-8')
 # Add Bulk Operation
 			elif path == "/xmlrpc/addjobbulk" or path == "/json/addjobbulk":
@@ -1441,7 +1409,8 @@ class Master (xmlrpc.XMLRPC):
 				#State.Jobs[id].URL = url
 				
 				State.update ()
-				return str(res)
+				request.setResponseCode(200)
+				return str(res).encode('utf-8')
 #End Bulk Operation
 			elif path == "/xmlrpc/addjobbulknew" or path == "/json/addjobbulknew":
 
@@ -1487,7 +1456,8 @@ class Master (xmlrpc.XMLRPC):
 				#State.Jobs[id].URL = url
 				
 				State.update ()
-				return str(res)
+				request.setResponseCode(200)
+				return str(res).encode('utf-8')
 #End Bulk Operation
 			elif path == "/json/getjobs":
 				return self.json_getjobs (int(getArg ("id", 0)), getArg ("filter", ""))
