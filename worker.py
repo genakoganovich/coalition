@@ -259,12 +259,27 @@ class Worker:
         #	if i == 0 :
         #		cmds[i]
 
-        lenDir = len(dirs)
-        for temp in dirs:
-            if os.path.exists(temp):
-                dir = temp
+        # Select the appropriate directory for the current platform
+        selected_dir = None
+        original_dir = dir
+        
+        # Try each directory in order until we find one that exists
+        for temp_dir in dirs:
+            temp_dir = temp_dir.strip()  # Remove any whitespace
+            if temp_dir and os.path.exists(temp_dir):
+                selected_dir = temp_dir
+                debugOutput("Selected directory: " + selected_dir + " (from: " + original_dir + ")")
                 break
-        print(dir)
+        
+        # Use the selected directory or fall back to the first one if none exist
+        if selected_dir:
+            dir = selected_dir
+        else:
+            # No directories exist, use the first one and let the error handling below catch it
+            dir = dirs[0].strip() if dirs else original_dir
+            debugOutput("Warning: No valid directories found in: " + original_dir + ", using: " + dir)
+        
+        print("Final directory: " + dir)
         if user != "" and sys.platform != "win32" and usesu:
             debugOutput ("Run the command using login " + user)
             #os.seteuid (pwd.getpwnam (user)[2])

@@ -1314,6 +1314,8 @@ class Master (xmlrpc.XMLRPC):
 				output("Debug: Cmd >>"+str(cmd))
 				dir = getArg ("dir", ".")
 				output("Debug: Dir >>"+str(dir))
+				# Note: dir can be comma-separated for cross-platform support
+				# Format: "linux_path,windows_path" e.g., "/home/user/work,C:\\Users\\user\\work"
 				priority = getArg ("priority", "1000")
 				output("Debug: Priority >>"+str(priority))
 				retry = getArg ("retry", "10")
@@ -1371,6 +1373,7 @@ class Master (xmlrpc.XMLRPC):
 				title = getArg ("title", "New job")
 				cmd = getArg ("cmd", "")
 				dir = getArg ("dir", ".")
+				# Note: dir can be comma-separated for cross-platform support
 				priority = getArg ("priority", "1000")
 				retry = getArg ("retry", "10")
 				timeout = getArg ("timeout", "0")
@@ -1418,6 +1421,7 @@ class Master (xmlrpc.XMLRPC):
 				title = getArg ("title", "New job")
 				cmd = getArg ("cmd", "")
 				dir = getArg ("dir", ".")
+				# Note: dir can be comma-separated for cross-platform support
 				priority = getArg ("priority", "1000")
 				retry = getArg ("retry", "10")
 				timeout = getArg ("timeout", "0")
