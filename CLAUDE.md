@@ -110,6 +110,37 @@ The web UI provides real-time job queue monitoring with features:
 - Live activity feed showing job assignments
 - CSV export functionality via `csv.html`
 
+## Test Server Configuration
+
+**Test Server Details:**
+- Host: `opc@10.230.8.90`
+- Path: `~/coalition-server`
+- Web interface: `http://10.230.8.90:19211`
+
+**Test Server Commands:**
+```bash
+# Copy files to test server
+scp server.py worker.py opc@10.230.8.90:~/coalition-server/
+
+# Start test server
+ssh opc@10.230.8.90 "cd ~/coalition-server && python3 server.py"
+
+# Start test server with verbose output
+ssh opc@10.230.8.90 "cd ~/coalition-server && python3 server.py -v"
+
+# Stop test server
+ssh opc@10.230.8.90 "pkill -f 'python3 server.py'"
+
+# Check test server status
+ssh opc@10.230.8.90 "ps aux | grep 'python3 server.py'"
+```
+
+**Troubleshooting:**
+- If database corruption occurs, backup and remove `master_db` file to start fresh:
+  ```bash
+  ssh opc@10.230.8.90 "cd ~/coalition-server && mv master_db master_db.backup"
+  ```
+
 ## Development Notes
 
 - Python 3 codebase using modern libraries (Twisted, pickle)

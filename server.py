@@ -1506,7 +1506,7 @@ class Master (xmlrpc.XMLRPC):
 			elif path == "/json/movejobs":
 				return self.json_movejobs (request.args.get ("id"), getArg ("dest", 0))
 			elif path == "/json/updatejobs":
-				return self.json_updatejobs (request.args.get ("id"), request.args.get ("prop"),request.args.get ("value"))
+				return self.json_updatejobs (request.args.get(b"id", []), request.args.get(b"prop", []), request.args.get(b"value", []))
 			elif path == "/json/getlog":
 				return self.json_getlog (int(getArg ("id", 0)))
 			elif path == "/json/getworkers":
@@ -1644,6 +1644,11 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_updatejobs (self, ids, props, values):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		props = [prop.decode('utf-8') if isinstance(prop, bytes) else prop for prop in props]
+		values = [value.decode('utf-8') if isinstance(value, bytes) else value for value in values]
+		
 		output("Update job "+str (ids)+" "+str(props)+" "+str(values))
 		if props == None or values == None or len(props) != len(values):
 			return "0"
