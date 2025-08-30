@@ -1492,17 +1492,17 @@ class Master (xmlrpc.XMLRPC):
 			elif path == "/json/getjobs":
 				return self.json_getjobs (int(getArg ("id", 0)), getArg ("filter", ""))
 			elif path == "/json/clearjobs":
-				return self.json_clearjobs (request.args.get ("id"))
+				return self.json_clearjobs (request.args.get (b"id", []))
 			elif path == "/json/resetjobs":
-				return self.json_resetjobs (request.args.get ("id"))
+				return self.json_resetjobs (request.args.get (b"id", []))
 			elif path == "/json/reseterrorjobs":
-				return self.json_reseterrorjobs (request.args.get ("id"))
+				return self.json_reseterrorjobs (request.args.get (b"id", []))
 			elif path == "/json/startjobs":
-				return self.json_startjobs (request.args.get ("id"))
+				return self.json_startjobs (request.args.get (b"id", []))
 			elif path == "/json/pausejobs":
-				return self.json_pausejobs (request.args.get ("id"))
+				return self.json_pausejobs (request.args.get (b"id", []))
 			elif path == "/json/stopjobs":
-				return self.json_stopjobs (request.args.get ("id"))
+				return self.json_stopjobs (request.args.get (b"id", []))
 			elif path == "/json/movejobs":
 				return self.json_movejobs (request.args.get ("id"), getArg ("dest", 0))
 			elif path == "/json/updatejobs":
@@ -1520,7 +1520,7 @@ class Master (xmlrpc.XMLRPC):
 			elif path == "/json/startworkers":
 				return self.json_startworkers (request.args.get ("id"))
 			elif path == "/json/updateworkers":
-				return self.json_updateworkers (request.args.get ("id"), request.args.get ("prop"),request.args.get ("value"))
+				return self.json_updateworkers (request.args.get(b"id", []), request.args.get(b"prop", []), request.args.get(b"value", []))
 			elif path == "/json/getactivities":
 				return self.json_getactivities (int(getArg ("job", -1)), str(getArg ("worker", "")), int(getArg ("howlong", -1)))
 			else:
@@ -1576,6 +1576,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_clearjobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1586,6 +1589,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_resetjobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1596,6 +1602,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_reseterrorjobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1606,6 +1615,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_startjobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1616,6 +1628,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_pausejobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1626,6 +1641,9 @@ class Master (xmlrpc.XMLRPC):
 
 	def json_stopjobs (self, ids):
 		global State
+		# Decode byte strings to regular strings
+		ids = [id.decode('utf-8') if isinstance(id, bytes) else id for id in ids]
+		
 		if not ids:
 			return "0".encode('utf-8')
 		for jobId in ids:
@@ -1761,12 +1779,17 @@ class Master (xmlrpc.XMLRPC):
 	# update several workers props at once
 	def json_updateworkers (self, names, props, values):
 		global State
+		# Decode byte strings to regular strings
+		names = [name.decode('utf-8') if isinstance(name, bytes) else name for name in names]
+		props = [prop.decode('utf-8') if isinstance(prop, bytes) else prop for prop in props]
+		values = [value.decode('utf-8') if isinstance(value, bytes) else value for value in values]
+		
 		try:
 			output("Update workers "+str (names)+" "+str(props)+" "+str(values))
 		except:
 			pass
 		if not props or not values or len(props) != len(values):
-			return "0"
+			return "0".encode('utf-8')
 		for i in range(0,len(props)):
 			prop = props[i]
 			value = values[i]
