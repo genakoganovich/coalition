@@ -1306,6 +1306,7 @@ class Master (xmlrpc.XMLRPC):
 			# Addjob
 
 			if path == "/xmlrpc/addjob" or path == "/json/addjob":
+
 				parent = getArg ("parent", "0")
 				output("Debug: Parent >>"+str(parent))
 				title = getArg ("title", "New job")
@@ -1351,7 +1352,8 @@ class Master (xmlrpc.XMLRPC):
 							parent = State.findJobByTitle (parent)
 							if parent == None:
 								print("Error : can't find job " + str (parenttitle))
-								return -1
+								request.setResponseCode(400)
+								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
 					dependencies = re.findall ('(\d+)', dependencies)
@@ -1362,8 +1364,11 @@ class Master (xmlrpc.XMLRPC):
 				State.Jobs[id].URL = url
 				
 				State.update ()
+				result = str(id).encode('utf-8')
 				request.setResponseCode(200)
-				return str(id).encode('utf-8')
+				request.setHeader("Content-Type", "text/plain")
+				request.setHeader("Content-Length", str(len(result)))
+				return result
 # Add Bulk Operation
 			elif path == "/xmlrpc/addjobbulk" or path == "/json/addjobbulk":
 
@@ -1398,7 +1403,8 @@ class Master (xmlrpc.XMLRPC):
 							parent = State.findJobByTitle (parent)
 							if parent == None:
 								print("Error : can't find job " + str (parenttitle))
-								return -1
+								request.setResponseCode(400)
+								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
 					dependencies = re.findall ('(\d+)', dependencies)
@@ -1410,6 +1416,7 @@ class Master (xmlrpc.XMLRPC):
 				
 				State.update ()
 				request.setResponseCode(200)
+				request.setHeader("Content-Type", "text/plain")
 				return str(res).encode('utf-8')
 #End Bulk Operation
 			elif path == "/xmlrpc/addjobbulknew" or path == "/json/addjobbulknew":
@@ -1445,7 +1452,8 @@ class Master (xmlrpc.XMLRPC):
 							parent = State.findJobByTitle (parent)
 							if parent == None:
 								print("Error : can't find job " + str (parenttitle))
-								return -1
+								request.setResponseCode(400)
+								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
 					dependencies = re.findall ('(\d+)', dependencies)
@@ -1457,7 +1465,9 @@ class Master (xmlrpc.XMLRPC):
 				
 				State.update ()
 				request.setResponseCode(200)
-				return str(res).encode('utf-8')
+				request.setHeader("Content-Type", "text/plain")
+				result = str(res).encode('utf-8')
+				return result
 #End Bulk Operation
 			elif path == "/json/getjobs":
 				return self.json_getjobs (int(getArg ("id", 0)), getArg ("filter", ""))

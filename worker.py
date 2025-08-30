@@ -259,11 +259,28 @@ class Worker:
         #	if i == 0 :
         #		cmds[i]
 
-        lenDir = len(dirs)
-        for temp in dirs:
-            if os.path.exists(temp):
-                dir = temp
+        # Select the first valid directory from comma-separated paths
+        selected_dir = None
+        for temp_dir in dirs:
+            temp_dir = temp_dir.strip()  # Remove whitespace
+            if temp_dir and os.path.exists(temp_dir):  # Check if not empty and exists
+                selected_dir = temp_dir
                 break
+        
+        # Use selected directory or fallback to first non-empty directory
+        if selected_dir:
+            dir = selected_dir
+        else:
+            # No valid directories found, use first non-empty one
+            for temp_dir in dirs:
+                temp_dir = temp_dir.strip()
+                if temp_dir:  # First non-empty directory
+                    dir = temp_dir
+                    break
+            else:
+                # All directories are empty, use original
+                dir = dirs[0] if dirs else dir
+        
         print(dir)
         if user != "" and sys.platform != "win32" and usesu:
             debugOutput ("Run the command using login " + user)
