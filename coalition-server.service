@@ -1,0 +1,26 @@
+[Unit]
+Description=Coalition Server
+Documentation=file:/opt/coalition-server/README.md
+After=network.target
+
+[Service]
+Type=simple
+User=coalition
+Group=coalition
+WorkingDirectory=/opt/coalition-server
+ExecStart=/usr/bin/python3 /opt/coalition-server/server.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=coalition-server
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/coalition-server
+
+[Install]
+WantedBy=multi-user.target

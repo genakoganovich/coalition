@@ -5,7 +5,7 @@
 #
 
 echo "Install python3 support"
-yum install -y python3-twisted
+sudo pip3 install twisted
 echo "Install coalition-server"
 chmod +x coalition-server
 cp coalition-server /etc/init.d/
