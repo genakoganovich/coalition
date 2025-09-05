@@ -50,6 +50,7 @@ echo "  → Copying configuration and utility scripts..."
 cp "${BASE_DIR}/coalition.ini" "${SERVER_DIR}/"
 cp "${BASE_DIR}/coalition-server.service" "${SERVER_DIR}/"
 cp "${BASE_DIR}/install_server_service_rhel.sh" "${SERVER_DIR}/"
+cp "${BASE_DIR}/install_server_service_ubuntu.sh" "${SERVER_DIR}/"
 cp "${BASE_DIR}/coalition-server" "${SERVER_DIR}/" 2>/dev/null || echo "    (coalition-server script not found, skipping)"
 cp "${BASE_DIR}/install-server.sh" "${SERVER_DIR}/" 2>/dev/null || echo "    (install-server.sh not found, skipping)"
 cp "${BASE_DIR}/cleaner.sh" "${SERVER_DIR}/" 2>/dev/null || echo "    (cleaner.sh not found, skipping)"
@@ -74,6 +75,7 @@ Components:
 - System Utilities (host_cpu.py, host_mem.py)
 - Test Suite (test/)
 - RHEL 8+ Service Installation (install_server_service_rhel.sh)
+- Ubuntu Service Installation (install_server_service_ubuntu.sh)
 
 For documentation see README.md
 
@@ -81,7 +83,11 @@ RHEL 8+ Service Installation:
 For production deployment on RHEL 8+ systems, use:
   sudo ./install_server_service_rhel.sh [PORT]
 
-This will install Coalition Server as a systemd service with:
+Ubuntu Service Installation:
+For production deployment on Ubuntu systems, use:
+  sudo ./install_server_service_ubuntu.sh [PORT]
+
+Both installation scripts will install Coalition Server as a systemd service with:
 - Auto-start on boot
 - Auto-restart on failure  
 - Dedicated system user

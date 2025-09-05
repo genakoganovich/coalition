@@ -1,6 +1,6 @@
 #!/bin/bash
-# Coalition Server RHEL 8+ Service Installation Script
-# This script installs Coalition Server as a systemd service on RHEL 8+ systems
+# Coalition Server Ubuntu Service Installation Script
+# This script installs Coalition Server as a systemd service on Ubuntu systems
 
 set -e
 
@@ -11,13 +11,13 @@ INSTALL_DIR="/opt/coalition-server"
 USER="coalition"
 
 echo "============================================================"
-echo "Coalition Server Service Installation for RHEL 8+"
+echo "Coalition Server Service Installation for Ubuntu"
 echo "============================================================"
 
 # Check if running as root
 if [[ $EUID -ne 0 ]]; then
    echo "Error: This script must be run as root"
-   echo "Usage: sudo ./install_server_service_rhel.sh [PORT]"
+   echo "Usage: sudo ./install_server_service_ubuntu.sh [PORT]"
    exit 1
 fi
 
@@ -31,34 +31,44 @@ echo "  Service User: ${USER}"
 echo "  Server Port: ${SERVER_PORT}"
 echo ""
 
-# Check RHEL version
-if [ -f /etc/redhat-release ]; then
-    RHEL_VERSION=$(grep -oE 'release [0-9]+' /etc/redhat-release | awk '{print $2}')
-    if [ "$RHEL_VERSION" -lt 8 ]; then
-        echo "Error: This script requires RHEL 8 or higher"
-        echo "Current version: RHEL $RHEL_VERSION"
-        exit 1
+# Check Ubuntu version
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" != "ubuntu" ]; then
+        echo "Warning: This script is designed for Ubuntu, detected: $PRETTY_NAME"
+        echo "Proceeding anyway..."
+    else
+        echo "✓ Ubuntu $VERSION detected"
     fi
-    echo "✓ RHEL $RHEL_VERSION detected"
 else
-    echo "Warning: Could not detect RHEL version, proceeding anyway..."
+    echo "Warning: Could not detect OS version, proceeding anyway..."
 fi
 
 # Check Python 3
 echo "Checking Python 3..."
 if ! command -v python3 >/dev/null 2>&1; then
     echo "Error: Python 3 is required but not found"
-    echo "Install with: dnf install python3"
+    echo "Install with: apt update && apt install python3"
     exit 1
 fi
 PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
 echo "✓ Python $PYTHON_VERSION found"
+
+# Check for pip3
+echo "Checking pip3..."
+if ! command -v pip3 >/dev/null 2>&1; then
+    echo "Error: pip3 is required but not found"
+    echo "Install with: apt update && apt install python3-pip"
+    exit 1
+fi
+echo "✓ pip3 found"
 
 # Check for Twisted (required for server)
 echo "Checking Twisted web framework..."
 if ! python3 -c "import twisted" >/dev/null 2>&1; then
     echo "Error: Twisted web framework is required but not found"
     echo "Install with: pip3 install twisted"
+    echo "Or using system packages: apt install python3-twisted"
     exit 1
 fi
 echo "✓ Twisted web framework found"
@@ -105,15 +115,15 @@ cp "$SCRIPT_DIR/coalition-server.service" "$SERVICE_FILE"
 
 echo "✓ Systemd service file created"
 
-# Create firewall rule for server port
+# Configure firewall using ufw (Ubuntu's default firewall)
 echo "Configuring firewall..."
-if command -v firewall-cmd >/dev/null 2>&1 && systemctl is-active --quiet firewalld; then
-    firewall-cmd --permanent --add-port="${SERVER_PORT}/tcp" >/dev/null 2>&1 || true
-    firewall-cmd --reload >/dev/null 2>&1 || true
-    echo "✓ Firewall configured for port $SERVER_PORT"
+if command -v ufw >/dev/null 2>&1; then
+    ufw --force allow "${SERVER_PORT}/tcp" >/dev/null 2>&1 || true
+    echo "✓ UFW firewall configured for port $SERVER_PORT"
 else
-    echo "⚠ Firewall not configured (firewalld not active)"
+    echo "⚠ UFW firewall not found"
     echo "  Manual firewall configuration may be required"
+    echo "  If using iptables, allow port $SERVER_PORT/tcp"
 fi
 
 # Reload systemd and enable service
