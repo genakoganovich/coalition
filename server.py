@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.web import xmlrpc, server, static, http
-from twisted.internet import defer, reactor
+from twisted.internet import defer, reactor, threads
 import pickle, time, os, getopt, sys, base64, re, _thread, configparser, random, shutil
-import atexit, json
+import atexit, json, threading
 import smtplib
 from email.mime.text import MIMEText
 
@@ -331,6 +331,11 @@ class CState:
 
 	def __init__ (self):
 		self.clear ()
+		self._db_lock = threading.RLock()
+		self._write_queue = []
+		self._writing = False
+		self._last_write_time = 0
+		self._min_write_interval = 1.0  # Minimum 1 second between writes
 
 	# Clear the whole database
 	def clear (self) :
@@ -345,43 +350,43 @@ class CState:
 		self._StAffinity = {}			# static affinity
 		self._DynAffinity = {}			# dynamic affinity, job affinity concatened to the children jobs affinity
 
-	# Read the state
-	def read (self, fo):
+	# Read the state (synchronous helper for async version)
+	def _read_sync(self, fo):
 		_time = time.time ()
 		version = pickle.load(fo)
 		if version >= 8 :
-			self.Counter = cPickle.load (fo)
-			self.ActivityCounter = cPickle.load (fo)
+			self.Counter = pickle.load (fo)
+			self.ActivityCounter = pickle.load (fo)
 
-			count = cPickle.load (fo)
+			count = pickle.load (fo)
 			self.Activities = {}
 			for i in range (0, count):
-				array = cPickle.load (fo)
+				array = pickle.load (fo)
 				self.Activities.update (array)
 
-			count = cPickle.load (fo)
+			count = pickle.load (fo)
 			self.Jobs = {}
 			for i in range (0, count):
-				array = cPickle.load (fo)
+				array = pickle.load (fo)
 				self.Jobs.update (array)
 
-			count = cPickle.load (fo)
+			count = pickle.load (fo)
 			self.Workers = {}
 			for i in range (0, count):
-				array = cPickle.load (fo)
+				array = pickle.load (fo)
 				self.Workers.update (array)
 		else :
 			if version >= 5:
-				self.Counter = cPickle.load (fo)
+				self.Counter = pickle.load (fo)
 				if version >= 7 :
-					self.ActivityCounter = cPickle.load (fo)
-					self.Activities = cPickle.load (fo)
+					self.ActivityCounter = pickle.load (fo)
+					self.Activities = pickle.load (fo)
 				else :
 					print("Translate DB to version 7")
 					self.ActivityCounter = 0
 					self.Activities = {}
-				self.Jobs = cPickle.load (fo)
-				self.Workers = cPickle.load (fo)
+				self.Jobs = pickle.load (fo)
+				self.Workers = pickle.load (fo)
 
 				# Translate Workers from 6 -> 7
 				if version < 7 :
@@ -403,7 +408,115 @@ class CState:
 				self.clear ()
 		output("Read time :" + str (time.time () - _time) + "s")
 
-	# Write the state
+	# Async read the state
+	@defer.inlineCallbacks
+	def read_async(self):
+		global dataDir
+		try:
+			def _read_file():
+				try:
+					fo = open(dataDir + "/master_db", "rb")
+					self._read_sync(fo)
+					fo.close()
+					return True
+				except IOError:
+					output("No db found, create a new one")
+					self.clear()
+					return False
+			
+			result = yield threads.deferToThread(_read_file)
+			defer.returnValue(result)
+		except Exception as e:
+			output("Error reading database: " + str(e))
+			self.clear()
+			defer.returnValue(False)
+
+	# Write the state (synchronous helper for async version)
+	def _write_sync(self):
+		global dataDir
+		backup ()
+		fo = open(dataDir + "/master_db.part", "wb")
+		try:
+			_time = time.time ()
+			version = DBVersion
+			pickle.dump (version, fo)
+			pickle.dump (self.Counter, fo)
+			pickle.dump (self.ActivityCounter, fo)
+		
+			blockSize = 10000
+
+			# Save a block of dict
+			def saveBlock (blockID, blockSize, keys, _dict, fo):
+				array = {}
+				keys_list = list(keys)
+				for j in range (blockID*blockSize, min (len (keys_list), (blockID+1)*blockSize)):
+					key = keys_list[j]
+					value = _dict.get (key) 
+					if value != None:
+						array[key] = value
+				pickle.dump (array, fo)
+
+			output("Write Activities")
+			keys = self.Activities.keys ()
+			blockCount = (len (keys) + (blockSize-1)) // blockSize
+			pickle.dump (blockCount, fo)
+			for blockID in range(0, blockCount):
+				saveBlock (blockID, blockSize, keys, self.Activities, fo)
+		
+			output("Write Jobs")
+			keys = list(self.Jobs.keys ())
+			blockCount = (len (keys) + (blockSize-1)) // blockSize
+			pickle.dump (blockCount, fo)
+			for blockID in range(0, blockCount):
+				saveBlock (blockID, blockSize, keys, self.Jobs, fo)
+		
+			output("Write Workers")
+			keys = list(self.Workers.keys ())
+			blockCount = (len (keys) + (blockSize-1)) // blockSize
+			pickle.dump (blockCount, fo)
+			for blockID in range(0, blockCount):
+				saveBlock (blockID, blockSize, keys, self.Workers, fo)
+
+			fo.close()
+			try:
+				os.remove (dataDir + '/master_db')
+			except OSError:
+				pass
+			os.rename (dataDir + '/master_db.part', dataDir + '/master_db')
+			output("DB saved in " + str (time.time () - _time) + "s")
+			return True
+		except IOError:
+			fo.close()		
+			return False
+
+	# Async write the state
+	@defer.inlineCallbacks  
+	def write_async(self):
+		with self._db_lock:
+			if self._writing:
+				defer.returnValue(False)
+			self._writing = True
+		
+		try:
+			result = yield threads.deferToThread(self._write_sync)
+			self._last_write_time = time.time()
+			defer.returnValue(result)
+		finally:
+			with self._db_lock:
+				self._writing = False
+
+	# Throttled async write - prevents too frequent writes
+	@defer.inlineCallbacks
+	def write_async_throttled(self):
+		current_time = time.time()
+		with self._db_lock:
+			if self._writing or (current_time - self._last_write_time) < self._min_write_interval:
+				defer.returnValue(False)
+		
+		result = yield self.write_async()
+		defer.returnValue(result)
+
+	# Legacy generator-based write (kept for compatibility)
 	def write (self):
 		global dataDir
 		backup ()
@@ -523,7 +636,7 @@ class CState:
 
 	# Find a job by its title
 	def findJobByTitle (self, title):
-		for id, job in self.Jobs.iteritems ():
+		for id, job in self.Jobs.items():
 			if job.Title == title:
 				return id
 
@@ -1122,7 +1235,7 @@ class CState:
 			except:
 				return defvalue
 		active = set ()
-		for id, job in self.Jobs.iteritems ():
+		for id, job in self.Jobs.items():
 			if job.State == "WORKING":
 				active.add (id)
 			job.Parent = safeInt (job.Parent, 0)
@@ -1187,7 +1300,7 @@ class CState:
 		except KeyError:
 			pass
 		# Try to stop the worker's jobs
-		for id, job in self.Jobs.iteritems ():
+		for id, job in self.Jobs.items():
 			if job.Worker == name and job.State == "WORKING":
 				job.State = "WAITING"
 				self._UpdatedDb = True
@@ -2009,13 +2122,38 @@ def backup ():
 
 # Write the DB on disk
 SaveCoroutine = None
+SaveDeferred = None
+
 def saveDb ():
-	global State, dataDir, SaveCoroutine, SaveTime
+	global State, dataDir, SaveCoroutine, SaveDeferred, SaveTime
 
 	delai = SaveTime
 
-	if SaveCoroutine == None and State._UpdatedDb:
-		output("Start coroutine")
+	# Use async save if available, otherwise fall back to generator coroutine
+	if SaveDeferred is None and SaveCoroutine is None and State._UpdatedDb:
+		output("Start async save")
+		State._UpdatedDb = False
+		SaveDeferred = State.write_async()
+		
+		def onSaveComplete(result):
+			global SaveDeferred
+			output("Async save completed: " + str(result))
+			SaveDeferred = None
+			reactor.callLater(SaveTime, saveDb)
+		
+		def onSaveError(failure):
+			global SaveDeferred
+			output("Async save failed: " + str(failure))
+			SaveDeferred = None
+			reactor.callLater(SaveTime, saveDb)
+		
+		SaveDeferred.addCallback(onSaveComplete)
+		SaveDeferred.addErrback(onSaveError)
+		return
+
+	# Fallback to original coroutine method if async fails
+	if SaveCoroutine == None and State._UpdatedDb and SaveDeferred is None:
+		output("Start coroutine fallback")
 		State._UpdatedDb = False
 		SaveCoroutine = State.write ()
 
@@ -2027,9 +2165,33 @@ def saveDb ():
 			output("Stop coroutine")
 			SaveCoroutine = None
 	
-	reactor.callLater(delai, saveDb)
+	if SaveDeferred is None:
+		reactor.callLater(delai, saveDb)
 
-# Read the DB from disk
+# Read the DB from disk (async)
+@defer.inlineCallbacks
+def readDbAsync():
+	global State, dataDir
+	output("Read DB async")
+	try:
+		State = CState()
+		result = yield State.read_async()
+		if result:
+			output("DB loaded successfully")
+			# Touch every working job
+			_time = time.time()
+			for id, job in State.Jobs.items():
+				if job.State == "WORKING":
+					job.PingTime = _time
+		else:
+			output("DB read failed, using new state")
+		defer.returnValue(True)
+	except Exception as e:
+		output("Error reading database: " + str(e))
+		State = CState()
+		defer.returnValue(False)
+
+# Read the DB from disk (legacy synchronous version)
 def readDb ():
 	global State, dataDir
 	output("Read DB")
@@ -2040,14 +2202,15 @@ def readDb ():
 			output("No db found, create a new one")
 			State = CState()
 			return
-		State.read (fo)
+		State._read_sync(fo)
+		fo.close()
 	except:
 		print("Error reading " + dataDir + "/master_db" + " ! Quit !")
 		sys.exit (1)
 	output("DB is OK")
 	# Touch every working job
 	_time = time.time()
-	for id, job in State.Jobs.iteritems () :
+	for id, job in State.Jobs.items():
 		if job.State == "WORKING":
 			job.PingTime = _time
 	output("DB is OK")
@@ -2065,15 +2228,13 @@ def listenUDP():
 		except:
 			pass
 
-def main():
-	# Start the UDP server used for the broadcast
-	_thread.start_new_thread(listenUDP, ())
-
+@defer.inlineCallbacks
+def startServer():
+	"""Start the server after async database initialization"""
 	from twisted.internet import reactor
 	from twisted.web import server
 	root = Root("public_html")
 	webService = Master()
-	readDb ()
 	workers = Workers()
 	root.putChild(b'xmlrpc', webService)
 	root.putChild(b'json', webService)
@@ -2081,6 +2242,29 @@ def main():
 	output("Listen on port " + str (port))
 	reactor.listenTCP(port, server.Site(root))
 	reactor.callLater(5, saveDb)
+
+def main():
+	# Start the UDP server used for the broadcast
+	_thread.start_new_thread(listenUDP, ())
+
+	from twisted.internet import reactor
+	
+	# Initialize database asynchronously
+	def onDbReady(result):
+		output("Database initialization complete, starting server")
+		startServer()
+	
+	def onDbError(failure):
+		output("Database initialization failed: " + str(failure))
+		# Fall back to synchronous read
+		readDb()
+		startServer()
+	
+	# Try async database initialization first
+	d = readDbAsync()
+	d.addCallback(onDbReady)
+	d.addErrback(onDbError)
+	
 	reactor.run()
 
 def sendEmail (to, message) :
