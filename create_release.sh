@@ -142,7 +142,11 @@ cp "${BASE_DIR}/host_cpu.py" "${WORKER_DIR}/"
 cp "${BASE_DIR}/host_mem.py" "${WORKER_DIR}/"
 cp "${BASE_DIR}/job.py" "${WORKER_DIR}/"
 cp "${BASE_DIR}/coalition.ini" "${WORKER_DIR}/"
+
+# Worker service and installation files
+echo "  → Copying service and installation files..."
 cp "${BASE_DIR}/coalition-worker.service" "${WORKER_DIR}/"
+cp "${BASE_DIR}/install_worker_service_rhel.sh" "${WORKER_DIR}/" 2>/dev/null || echo "    (install_worker_service_rhel.sh not found, will create inline version)"
 
 # Documentation (worker-specific)
 echo "  → Creating worker documentation..."
@@ -225,9 +229,15 @@ Components:
 - Coalition Worker (worker.py)
 - System Monitoring (host_cpu.py, host_mem.py)
 - Job Execution (job.py)
+- RHEL 8+ Service Installation (install_worker_service_rhel.sh)
+- Systemd Service Definition (coalition-worker.service)
 
 Compatible with Coalition Server v${VERSION}
 For documentation see README.md
+
+RHEL 8+ Service Installation:
+For production deployment on RHEL 8+ systems, use:
+  sudo ./install_worker_service_rhel.sh [SERVER_URL] [WORKER_COUNT]
 EOF
 
 # Create worker-specific startup script
@@ -259,9 +269,10 @@ EOF
 
 chmod +x "${WORKER_DIR}/start_worker.sh"
 
-# Create RHEL 8+ systemd service installation script
-echo "  → Creating RHEL service installation script..."
-cat > "${WORKER_DIR}/install_worker_service_rhel.sh" << 'EOF'
+# Create RHEL 8+ systemd service installation script if not already present
+if [ ! -f "${WORKER_DIR}/install_worker_service_rhel.sh" ]; then
+    echo "  → Creating RHEL service installation script..."
+    cat > "${WORKER_DIR}/install_worker_service_rhel.sh" << 'EOF'
 #!/bin/bash
 # Coalition Worker RHEL 8+ Service Installation Script
 # This script installs Coalition Worker as a systemd service on RHEL 8+ systems
@@ -425,8 +436,11 @@ echo "To start the service now:"
 echo "  systemctl start $SERVICE_NAME"
 echo ""
 EOF
-
-chmod +x "${WORKER_DIR}/install_worker_service_rhel.sh"
+    chmod +x "${WORKER_DIR}/install_worker_service_rhel.sh"
+else
+    echo "  → Using existing RHEL service installation script"
+    chmod +x "${WORKER_DIR}/install_worker_service_rhel.sh"
+fi
 
 echo "✓ Coalition Worker package completed"
 
