@@ -8,7 +8,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SERVICE_NAME="coalition-worker"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
 INSTALL_DIR="/opt/coalition-worker"
-USER="coalition"
 
 echo "============================================================"
 echo "Coalition Worker Service Installation for RHEL 8+"
@@ -17,13 +16,26 @@ echo "============================================================"
 # Check if running as root
 if [[ $EUID -ne 0 ]]; then
    echo "Error: This script must be run as root"
-   echo "Usage: sudo ./install_worker_service_rhel.sh [SERVER_URL] [WORKERS_COUNT]"
+   echo "Usage: sudo ./install_worker_service_rhel.sh <USERNAME> [SERVER_URL] [WORKERS_COUNT]"
    exit 1
 fi
 
 # Parse command line arguments
-SERVER_URL="${1:-}"
-WORKERS_COUNT="${2:-1}"
+USER="${1:-}"
+SERVER_URL="${2:-}"
+WORKERS_COUNT="${3:-1}"
+
+# Check if username is provided
+if [[ -z "$USER" ]]; then
+   echo "Error: Username is mandatory"
+   echo "Usage: sudo ./install_worker_service_rhel.sh <USERNAME> [SERVER_URL] [WORKERS_COUNT]"
+   echo ""
+   echo "Arguments:"
+   echo "  USERNAME       - The user account that will run the service (mandatory)"
+   echo "  SERVER_URL     - Coalition server URL (optional, auto-discover if not provided)"
+   echo "  WORKERS_COUNT  - Number of worker processes (optional, default: 1)"
+   exit 1
+fi
 
 echo "Configuration:"
 echo "  Service Name: ${SERVICE_NAME}"
