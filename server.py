@@ -2228,7 +2228,6 @@ def listenUDP():
 		except:
 			pass
 
-@defer.inlineCallbacks
 def startServer():
 	"""Start the server after async database initialization"""
 	from twisted.internet import reactor
