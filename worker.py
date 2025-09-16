@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import socket, time, subprocess, _thread, getopt, sys, os, base64, signal, string, re, platform, configparser, http.client, urllib.parse
+import socket, time, subprocess, _thread, getopt, sys, os, base64, signal, string, re, platform, configparser, http.client, urllib.parse, shutil, fnmatch
 from sys import modules
 from os.path import splitext, abspath
 
@@ -259,29 +259,155 @@ class Worker:
         #	if i == 0 :
         #		cmds[i]
 
-        # Select the first valid directory from comma-separated paths
-        selected_dir = None
+        # Always use the first non-empty directory from comma-separated paths
+        self.info("Directory selection from: " + str(dirs))
         for temp_dir in dirs:
             temp_dir = temp_dir.strip()  # Remove whitespace
-            if temp_dir and os.path.exists(temp_dir):  # Check if not empty and exists
-                selected_dir = temp_dir
+            if temp_dir:  # First non-empty directory
+                dir = temp_dir
+                self.info("Using first non-empty directory: " + dir)
                 break
-        
-        # Use selected directory or fallback to first non-empty directory
-        if selected_dir:
-            dir = selected_dir
         else:
-            # No valid directories found, use first non-empty one
-            for temp_dir in dirs:
-                temp_dir = temp_dir.strip()
-                if temp_dir:  # First non-empty directory
-                    dir = temp_dir
-                    break
-            else:
-                # All directories are empty, use original
-                dir = dirs[0] if dirs else dir
+            # All directories are empty, use original
+            dir = dirs[0] if dirs else dir
+            self.info("All directories empty, using original: " + dir)
         
         print(dir)
+        self.info("Selected directory: " + dir)
+        
+        # Process information for debugging
+        try:
+            import pwd
+            import os
+            current_user = pwd.getpwuid(os.getuid()).pw_name
+            current_uid = os.getuid()
+            current_gid = os.getgid()
+            self.info("Worker running as user: " + current_user + " (uid=" + str(current_uid) + ", gid=" + str(current_gid) + ")")
+        except Exception as e:
+            self.info("Could not get process user info: " + str(e))
+        
+        # Directory setup logic 
+        if not os.path.exists(dir):
+            parent_dir = os.path.dirname(dir)
+            self.info ("parent_dir = " + parent_dir)
+            self.info ("Directory " + dir + " does not exist, checking parent directory")
+            
+            # More detailed parent directory check
+            try:
+                parent_exists = os.path.exists(parent_dir)
+                parent_accessible = os.access(parent_dir, os.R_OK)
+                self.info("Parent directory exists: " + str(parent_exists))
+                self.info("Parent directory readable: " + str(parent_accessible))
+                
+                # Check for case sensitivity issues
+                parent_parent = os.path.dirname(parent_dir)
+                parent_name = os.path.basename(parent_dir)
+                self.info("Checking for case sensitivity. Parent parent: " + parent_parent + ", looking for: " + parent_name)
+                
+                if os.path.exists(parent_parent):
+                    try:
+                        available_dirs = os.listdir(parent_parent)
+                        self.info("Available directories in " + parent_parent + ": " + str(available_dirs))
+                        # Check for case-insensitive matches
+                        for available_dir in available_dirs:
+                            if available_dir.lower() == parent_name.lower() and available_dir != parent_name:
+                                self.info("Found case mismatch! Looking for '" + parent_name + "' but found '" + available_dir + "'")
+                    except Exception as e:
+                        self.info("Error listing parent's parent directory: " + str(e))
+                
+                if parent_exists:
+                    try:
+                        parent_contents = os.listdir(parent_dir)
+                        self.info("Parent directory contents: " + str(parent_contents))
+                    except PermissionError as e:
+                        self.info("Permission denied listing parent directory: " + str(e))
+                    except Exception as e:
+                        self.info("Error listing parent directory: " + str(e))
+            except Exception as e:
+                self.info("Error checking parent directory: " + str(e))
+            
+            if os.path.exists(parent_dir):
+                self.info("Parent directory exists, cleaning up old gSlave_* directories")
+                try:
+                    for subdir in os.listdir(parent_dir):
+                        self.info ("subdir = " + subdir)
+                        subdir_path = os.path.join(parent_dir, subdir)
+                        self.info ("subdir_path = " + subdir_path)
+                        if os.path.isdir(subdir_path) and fnmatch.fnmatch(subdir, "gSlave_*"):
+                            self.info ("Removing " + subdir_path)
+                            shutil.rmtree(subdir_path)
+
+                    # Extract the most child folder name
+                    child_folder_name = os.path.basename(dir)
+                    source_path = os.path.join("/mnt/s3-runnable-builds/gSlave", child_folder_name)
+
+                    self.info ("child_folder_name = " + child_folder_name)
+                    self.info ("source_path = " + source_path)
+
+                    if os.path.exists(source_path):
+                        self.info("Copying from " + source_path + " to " + dir)
+                        shutil.copytree(source_path, dir)
+                    else:
+                        self.info("Source path " + source_path + " does not exist")
+                        self.ErrorCode = -4
+                        self.info("Job returns code: " + str(self.ErrorCode))
+                        return int(self.ErrorCode)
+                except Exception as e:
+                    self.info("Error during directory setup: " + str(e))
+                    self.ErrorCode = -5
+                    self.info("Job returns code: " + str(self.ErrorCode))
+                    return int(self.ErrorCode)
+            else:
+                self.info("Parent directory " + parent_dir + " does not exist.")
+                
+                # Try a direct access test to see if it's a permission issue
+                try:
+                    test_result = os.listdir(parent_dir)
+                    self.info("UNEXPECTED: os.path.exists() returned False but os.listdir() worked! Contents: " + str(test_result))
+                    # If we get here, it's a permission issue with os.path.exists() but the directory actually exists
+                    # Let's proceed with the operation
+                    self.info("Proceeding with directory setup despite os.path.exists() returning False")
+                    
+                    for subdir in test_result:
+                        self.info ("subdir = " + subdir)
+                        subdir_path = os.path.join(parent_dir, subdir)
+                        self.info ("subdir_path = " + subdir_path)
+                        if os.path.isdir(subdir_path) and fnmatch.fnmatch(subdir, "gSlave_*"):
+                            self.info ("Removing " + subdir_path)
+                            shutil.rmtree(subdir_path)
+
+                    # Extract the most child folder name
+                    child_folder_name = os.path.basename(dir)
+                    source_path = os.path.join("/mnt/s3-runnable-builds/gSlave", child_folder_name)
+
+                    self.info ("child_folder_name = " + child_folder_name)
+                    self.info ("source_path = " + source_path)
+
+                    if os.path.exists(source_path):
+                        self.info("Copying from " + source_path + " to " + dir)
+                        shutil.copytree(source_path, dir)
+                    else:
+                        self.info("Source path " + source_path + " does not exist")
+                        self.ErrorCode = -4
+                        self.info("Job returns code: " + str(self.ErrorCode))
+                        return int(self.ErrorCode)
+                        
+                except PermissionError as e:
+                    self.info("Confirmed: Permission denied accessing parent directory: " + str(e))
+                    self.ErrorCode = -3
+                    self.info("Job returns code: " + str(self.ErrorCode))
+                    return int(self.ErrorCode)
+                except FileNotFoundError as e:
+                    self.info("Confirmed: Parent directory truly does not exist: " + str(e))
+                    self.ErrorCode = -3
+                    self.info("Job returns code: " + str(self.ErrorCode))
+                    return int(self.ErrorCode)
+                except Exception as e:
+                    self.info("Error testing parent directory access: " + str(e))
+                    self.ErrorCode = -3
+                    self.info("Job returns code: " + str(self.ErrorCode))
+                    return int(self.ErrorCode)
+        
         if user != "" and sys.platform != "win32" and usesu:
             debugOutput ("Run the command using login " + user)
             #os.seteuid (pwd.getpwnam (user)[2])

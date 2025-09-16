@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=coalition
-Group=coalition
+User=prod
+Group=prod
 WorkingDirectory=/opt/coalition-worker
 ExecStart=/usr/bin/python3 /opt/coalition-worker/worker.py
 Restart=always
@@ -15,12 +15,12 @@ StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=coalition-worker
 
-# Security settings
+# Security settings - modified to allow access to /home/prod and /mnt
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
-ProtectHome=true
-ReadWritePaths=/opt/coalition-worker
+ProtectHome=false
+ReadWritePaths=/opt/coalition-worker /home/prod /mnt/s3-runnable-builds
 
 [Install]
 WantedBy=multi-user.target
