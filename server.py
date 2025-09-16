@@ -336,6 +336,10 @@ class CState:
 		self._writing = False
 		self._last_write_time = 0
 		self._min_write_interval = 1.0  # Minimum 1 second between writes
+		self._last_update_time = 0
+		self._update_interval = 1.0  # Batch updates every 1 second
+		self._pending_worker_updates = set()
+		self._pending_job_updates = set()
 
 	# Clear the whole database
 	def clear (self) :
@@ -581,7 +585,14 @@ class CState:
 	def update (self, forceSaveDb = False) :
 		global	TimeOut
 		_time = time.time ()
+		
+		# Throttle updates to reduce CPU load with many workers
+		if not forceSaveDb and (_time - self._last_update_time) < self._update_interval:
+			return
+		
+		self._last_update_time = _time
 		refreshActive = False
+		
 		for id in State._ActiveJobs.copy () :
 			try:
 				job = self.Jobs[id]
@@ -617,6 +628,25 @@ class CState:
 				self.updateWorkerState (name, "TIMEOUT")
 		if forceSaveDb:
 			saveDb ()
+
+	# Fast update for heartbeats - only check specific worker/job, not all
+	def fastUpdate(self, workerName=None, jobId=None):
+		global TimeOut
+		_time = time.time()
+		
+		# Only check the specific worker/job that needs updating
+		if jobId and jobId in self.Jobs:
+			job = self.Jobs[jobId]
+			if job.State == "WORKING" and _time - job.PingTime > TimeOut:
+				output("Job " + str(job.ID) + " is AWOL")
+				self.updateJobState(jobId, "ERROR")
+				self.updateWorkerState(job.Worker, "TIMEOUT")
+				writeJobLog(job.ID, "SERVER: Worker "+job.Worker+" doesn't respond, timeout.")
+		
+		if workerName and workerName in self.Workers:
+			worker = self.Workers[workerName]
+			if worker.State != "TIMEOUT" and _time - worker.PingTime > TimeOut:
+				self.updateWorkerState(workerName, "TIMEOUT")
 
 	# -----------------------------------------------------------------------
 	# job handling
@@ -1277,7 +1307,7 @@ class CState:
 	# -----------------------------------------------------------------------
 	# worker handling
 
-	# get a worker
+	# get a worker (optimized for high concurrency)
 	def getWorker (self, name) :
 		try :
 			worker = self.Workers[name]
@@ -1285,12 +1315,19 @@ class CState:
 			return worker
 		except KeyError:
 			# Worker not found, add it
-			self._UpdatedDb = True
-			output("Add worker " + name)
-			worker = Worker (name)
-			worker.PingTime = time.time()
-			self.Workers[name] = worker
-			return worker
+			with self._db_lock:  # Thread-safe worker creation
+				# Double-check after acquiring lock
+				if name in self.Workers:
+					worker = self.Workers[name]
+					worker.PingTime = time.time()
+					return worker
+				
+				self._UpdatedDb = True
+				output("Add worker " + name)
+				worker = Worker (name)
+				worker.PingTime = time.time()
+				self.Workers[name] = worker
+				return worker
 
 	def stopWorker (self, name):
 		output("Stop worker " + name)
@@ -1469,7 +1506,7 @@ class Master (xmlrpc.XMLRPC):
 								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
-					dependencies = re.findall ('(\d+)', dependencies)
+					dependencies = re.findall (r'(\d+)', dependencies)
 				for i, dep in enumerate (dependencies) :
 					dependencies[i] = int (dep)
 				
@@ -1520,7 +1557,7 @@ class Master (xmlrpc.XMLRPC):
 								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
-					dependencies = re.findall ('(\d+)', dependencies)
+					dependencies = re.findall (r'(\d+)', dependencies)
 				for i, dep in enumerate (dependencies) :
 					dependencies[i] = int (dep)
 				
@@ -1569,7 +1606,7 @@ class Master (xmlrpc.XMLRPC):
 								return str(-1).encode('utf-8')
 				if type(dependencies) is str:
 					# Parse the dependencies string
-					dependencies = re.findall ('(\d+)', dependencies)
+					dependencies = re.findall (r'(\d+)', dependencies)
 				for i, dep in enumerate (dependencies) :
 					dependencies[i] = int (dep)
 				
@@ -1960,53 +1997,67 @@ class Workers(xmlrpc.XMLRPC):
 		output("Heart beat for " + str(jobId) + " " + str(load))
 		# Update the worker load and ping time
 		worker = State.getWorker (hostname)
+		
+		# Replace eval() with safer JSON parsing
 		try:
-			worker.Load = eval (load)
-		except SyntaxError:
+			import json
+			worker.Load = json.loads(load)
+		except (ValueError, json.JSONDecodeError):
 			worker.Load = [0]
+		
 		worker.FreeMemory = int(freeMemory)
 		worker.TotalMemory = int(totalMemory)
 		workingJob = None
 		jobId = int(jobId)
+		
 		try :
 			job = State.Jobs[jobId]
 			if job.State == "WORKING" and job.Worker == hostname :
 				State.updateWorkerState (hostname, "WORKING")
 				workingJob = job
 				job.PingTime = _time
+				
+				# Async log writing to avoid blocking
 				if log != "" :
-					try:
-						logFile = open (getLogFilename (jobId), "a")
-						log = base64.decodebytes(log.encode('utf-8')).decode('utf-8')
+					def writeLogAsync():
+						try:
+							logFile = open (getLogFilename (jobId), "a")
+							decoded_log = base64.decodebytes(log.encode('utf-8')).decode('utf-8')
+							
+							# Filter the log progression message
+							localProgress = getattr(job, "LocalProgressPattern", None)
+							globalProgress = getattr(job, "GlobalProgressPattern", None)
+							if localProgress or globalProgress:
+								output("progressPattern : \n" + str(localProgress) + " " + str(globalProgress))
+								lp = None
+								gp = None
+								if localProgress:
+									lFilter = getLogFilter (localProgress)
+									decoded_log, lp = lFilter.filterLogs (decoded_log)
+								if globalProgress:
+									gFilter = getLogFilter (globalProgress)
+									decoded_log, gp = gFilter.filterLogs (decoded_log)
+								if lp != None:
+									output("lp : "+ str(lp)+"\n")
+									job.LocalProgress = lp
+								if gp != None:
+									output("gp : "+ str(gp)+"\n")
+									job.GlobalProgress = gp
+							
+							logFile.write (decoded_log)
+							logFile.close ()
+						except IOError:
+							output("Error in logs")
+					
+					# Write logs in thread to avoid blocking
+					threads.deferToThread(writeLogAsync)
 						
-						# Filter the log progression message
-						progress = None
-						localProgress = getattr(job, "LocalProgressPattern", None)
-						globalProgress = getattr(job, "GlobalProgressPattern", None)
-						if localProgress or globalProgress:
-							output("progressPattern : \n" + str(localProgress) + " " + str(globalProgress))
-							lp = None
-							gp = None
-							if localProgress:
-								lFilter = getLogFilter (localProgress)
-								log, lp = lFilter.filterLogs (log)
-							if globalProgress:
-								gFilter = getLogFilter (globalProgress)
-								log, gp = gFilter.filterLogs (log)
-							if lp != None:
-								output("lp : "+ str(lp)+"\n")
-								job.LocalProgress = lp
-							if gp != None:
-								output("gp : "+ str(gp)+"\n")
-								job.GlobalProgress = gp
-						
-						logFile.write (log)
-						logFile.close ()
-					except IOError:
-						output("Error in logs")
 		except KeyError:
 			pass
-		State.update ()
+		
+		# Use fast update instead of full State.update() for better performance
+		State.fastUpdate(hostname, jobId)
+		
 		if worker.State == "WORKING" and workingJob != None and workingJob.State == "WORKING":
 			return "true"
 		# Stop
@@ -2021,10 +2072,14 @@ class Workers(xmlrpc.XMLRPC):
 		global State
 		output(hostname + " wants some job" + " " + load)
 		worker = State.getWorker (hostname)
+		
+		# Replace eval() with safer JSON parsing
 		try:
-			worker.Load = eval (load)
-		except SyntaxError:
+			import json
+			worker.Load = json.loads(load)
+		except (ValueError, json.JSONDecodeError):
 			worker.Load = [0]
+			
 		worker.FreeMemory = int(freeMemory)
 		worker.TotalMemory = int(totalMemory)
 		if not worker.Active:
@@ -2044,7 +2099,9 @@ class Workers(xmlrpc.XMLRPC):
 			worker.LastJob = job.ID
 			worker.PingTime = job.PingTime
 			State.updateWorkerState (hostname, "WORKING")
-			State.update ()
+			
+			# Use fast update instead of full State.update() for better performance
+			State.fastUpdate(hostname, jobId)
 			output(hostname + " picked job " + str (jobId) + " " + worker.State)
 			
 			# Create the event
@@ -2059,7 +2116,7 @@ class Workers(xmlrpc.XMLRPC):
 				return repr (job.ID)+","+repr (job.Command)+","+repr (job.Dir)+","+'""'
 
 		State.updateWorkerState (hostname, "WAITING")
-		State.update ()
+		# No need for full update when just setting worker to waiting
 		return '-1,"","",""'
 
 	def json_endjob (self, hostname, jobId, errorCode):
@@ -2242,6 +2299,16 @@ def startServer():
 	reactor.listenTCP(port, server.Site(root))
 	reactor.callLater(5, saveDb)
 
+# Scheduled full update for worker/job management
+def scheduledUpdate():
+	global State
+	try:
+		State.update(forceSaveDb=False)
+	except Exception as e:
+		output("Error in scheduled update: " + str(e))
+	# Schedule next update
+	reactor.callLater(5, scheduledUpdate)  # Every 5 seconds instead of every heartbeat
+
 def main():
 	# Start the UDP server used for the broadcast
 	_thread.start_new_thread(listenUDP, ())
@@ -2252,12 +2319,16 @@ def main():
 	def onDbReady(result):
 		output("Database initialization complete, starting server")
 		startServer()
+		# Start the scheduled update system
+		reactor.callLater(5, scheduledUpdate)
 	
 	def onDbError(failure):
 		output("Database initialization failed: " + str(failure))
 		# Fall back to synchronous read
 		readDb()
 		startServer()
+		# Start the scheduled update system
+		reactor.callLater(5, scheduledUpdate)
 	
 	# Try async database initialization first
 	d = readDbAsync()

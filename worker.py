@@ -223,7 +223,7 @@ class Worker:
                 self.info ("Environment variable not found : " + match.group(1))
                 result = ""
             return result
-        return re.sub ('\$\(([^)]*)\)', _getenv, _str)
+        return re.sub (r'\$\(([^)]*)\)', _getenv, _str)
 
     # Add to the logs
     def info (self, str):
