@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import socket, time, subprocess, _thread, getopt, sys, os, base64, signal, string, re, platform, configparser, http.client, urllib.parse, shutil, fnmatch
+import socket, time, subprocess, _thread, getopt, sys, os, base64, signal, string, re, platform, configparser, http.client, urllib.parse, shutil, fnmatch, random
 from sys import modules
 from os.path import splitext, abspath
+from time import sleep
 
 import host_cpu, host_mem
 
@@ -197,12 +198,12 @@ def workerRun (worker, func, retry):
 # A Singler worker
 class Worker:
     def __init__ (self, name):
-        self.Name = name						# The worker name
-        self.Working = False					# The worker current state
-        self.PId = 0							# The worker current process pid
-        self.ErrorCode = 0						# The process exit error code
-        self.LogLock = _thread.allocate_lock()	# Logs lock
-        self.Log = ""							# Logs
+        self.Name = name                                                # The worker name
+        self.Working = False                                    # The worker current state
+        self.PId = 0                                                    # The worker current process pid
+        self.ErrorCode = 0                                              # The process exit error code
+        self.LogLock = _thread.allocate_lock()  # Logs lock
+        self.Log = ""                                                   # Logs
         self.HostCPU = host_cpu.HostCPU ()
         self.TotalMemory = host_mem.getTotalMem ()
 
@@ -256,8 +257,8 @@ class Worker:
         cmd = cmd[1 : : ]
         print(cmd)
         #for i in range(size(cmds)):
-        #	if i == 0 :
-        #		cmds[i]
+        #       if i == 0 :
+        #               cmds[i]
 
         # Always use the first non-empty directory from comma-separated paths
         self.info("Directory selection from: " + str(dirs))
@@ -271,10 +272,10 @@ class Worker:
             # All directories are empty, use original
             dir = dirs[0] if dirs else dir
             self.info("All directories empty, using original: " + dir)
-        
+
         print(dir)
         self.info("Selected directory: " + dir)
-        
+
         # Process information for debugging
         try:
             import pwd
@@ -285,25 +286,25 @@ class Worker:
             self.info("Worker running as user: " + current_user + " (uid=" + str(current_uid) + ", gid=" + str(current_gid) + ")")
         except Exception as e:
             self.info("Could not get process user info: " + str(e))
-        
-        # Directory setup logic 
+
+        # Directory setup logic
         if not os.path.exists(dir):
             parent_dir = os.path.dirname(dir)
             self.info ("parent_dir = " + parent_dir)
             self.info ("Directory " + dir + " does not exist, checking parent directory")
-            
+
             # More detailed parent directory check
             try:
                 parent_exists = os.path.exists(parent_dir)
                 parent_accessible = os.access(parent_dir, os.R_OK)
                 self.info("Parent directory exists: " + str(parent_exists))
                 self.info("Parent directory readable: " + str(parent_accessible))
-                
+
                 # Check for case sensitivity issues
                 parent_parent = os.path.dirname(parent_dir)
                 parent_name = os.path.basename(parent_dir)
                 self.info("Checking for case sensitivity. Parent parent: " + parent_parent + ", looking for: " + parent_name)
-                
+
                 if os.path.exists(parent_parent):
                     try:
                         available_dirs = os.listdir(parent_parent)
@@ -314,7 +315,7 @@ class Worker:
                                 self.info("Found case mismatch! Looking for '" + parent_name + "' but found '" + available_dir + "'")
                     except Exception as e:
                         self.info("Error listing parent's parent directory: " + str(e))
-                
+
                 if parent_exists:
                     try:
                         parent_contents = os.listdir(parent_dir)
@@ -325,7 +326,7 @@ class Worker:
                         self.info("Error listing parent directory: " + str(e))
             except Exception as e:
                 self.info("Error checking parent directory: " + str(e))
-            
+
             if os.path.exists(parent_dir):
                 self.info("Parent directory exists, cleaning up old gSlave_* directories")
                 try:
@@ -359,7 +360,7 @@ class Worker:
                     return int(self.ErrorCode)
             else:
                 self.info("Parent directory " + parent_dir + " does not exist.")
-                
+
                 # Try a direct access test to see if it's a permission issue
                 try:
                     test_result = os.listdir(parent_dir)
@@ -367,7 +368,7 @@ class Worker:
                     # If we get here, it's a permission issue with os.path.exists() but the directory actually exists
                     # Let's proceed with the operation
                     self.info("Proceeding with directory setup despite os.path.exists() returning False")
-                    
+
                     for subdir in test_result:
                         self.info ("subdir = " + subdir)
                         subdir_path = os.path.join(parent_dir, subdir)
@@ -391,7 +392,7 @@ class Worker:
                         self.ErrorCode = -4
                         self.info("Job returns code: " + str(self.ErrorCode))
                         return int(self.ErrorCode)
-                        
+
                 except PermissionError as e:
                     self.info("Confirmed: Permission denied accessing parent directory: " + str(e))
                     self.ErrorCode = -3
@@ -407,7 +408,7 @@ class Worker:
                     self.ErrorCode = -3
                     self.info("Job returns code: " + str(self.ErrorCode))
                     return int(self.ErrorCode)
-        
+
         if user != "" and sys.platform != "win32" and usesu:
             debugOutput ("Run the command using login " + user)
             #os.seteuid (pwd.getpwnam (user)[2])
@@ -425,44 +426,58 @@ class Worker:
 
         # Serious quoting under windows
         #if sys.platform=="win32":
-        #	cmd = '"' + cmd + '"'
+        #       cmd = '"' + cmd + '"'
 
-        # Run the job
-        self.info ("exec " + cmd)
-        print(cmd)
-        process = subprocess.Popen (cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        totalAttempts = 5
+        for attempt in range(totalAttempts):
+            self.info ("Starting slave - attempt #" + str(attempt))
 
-        # Get the pid
-        self.PId = int (process.pid)
-        # 01 May. Workaround for crash on coldStart
-        lines = 0
-        while (1):
-            # Read some lines of logs
-            line = process.stdout.readline()
+            # Run the job
+            self.info ("exec " + cmd)
+            print(cmd)
+            process = subprocess.Popen (cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-            # Count log lines number till some treshold for looking on coldStart error
-            lines += 1
+            hasSentinelKeyError = False
+            # Get the pid
+            self.PId = int (process.pid)
+            # 01 May. Workaround for crash on coldStart
+            lines = 0
+            while (1):
+                # Read some lines of logs
+                line = process.stdout.readline()
 
-            # "" or b"" means EOF (Python 3 compatibility)
-            if line == "" or line == b"":
-                self.info ("end")
+                # Count log lines number till some treshold for looking on coldStart error
+                lines += 1
+
+                # "" or b"" means EOF (Python 3 compatibility)
+                if line == "" or line == b"":
+                    self.info ("end")
+                    break
+
+                # Convert bytes to string for Python 3 compatibility
+                if isinstance(line, bytes):
+                    line = line.decode('utf-8', errors='replace')
+
+                # Check that we have Sentinel key errors
+                if any(substring in line for substring in ["Sentinel LDK Protection System", "Required Sentinel protection key not found"]):
+                    hasSentinelKeyError = True
+
+                debugRaw (line)
+                self.LogLock.acquire()
+                try:
+                        self.Log = self.Log + line
+                finally:
+                        self.LogLock.release()
+
+            # Get the error code of the job
+            self.ErrorCode = process.wait ()
+            self.info ("Job returns code: " + str(self.ErrorCode))
+            if self.ErrorCode == 0 or hasSentinelKeyError == False:
                 break
 
-            # Convert bytes to string for Python 3 compatibility
-            if isinstance(line, bytes):
-                line = line.decode('utf-8', errors='replace')
-
-            debugRaw (line)
-            self.LogLock.acquire()
-            try:
-                    self.Log = self.Log + line
-            finally:
-                    self.LogLock.release()
-
-        # Get the error code of the job
-        self.ErrorCode = process.wait ()
-        self.info ("Job returns code: " + str(self.ErrorCode))
-
+            timeToSleep = random.randint(10, 60)
+            self.info ("Error starting slave - wait " + str(timeToSleep) + " seconds for next attempt")
+            sleep(timeToSleep)
 
     def execProcess (self, cmd, dir, user):
         global debug, sleepTime
@@ -604,13 +619,13 @@ class Worker:
         time.sleep (sleepTime)
 
 def main ():
-    global	name, serverUrl, sleepTime, broadcastPort, gogogo, workers, startup
+    global      name, serverUrl, sleepTime, broadcastPort, gogogo, workers, startup
 
     print ("Startup command is '" + str (startup) + "'")
     if startup != "":
         cmd = startup
         #if sys.platform=="win32":
-        #	cmd = '"' + cmd + '"'
+        #       cmd = '"' + cmd + '"'
         process = subprocess.Popen (cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         errorCode = process.wait ()
         print ("Startup command exited with code " + str (errorCode))
