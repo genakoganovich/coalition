@@ -429,6 +429,7 @@ class Worker:
         #       cmd = '"' + cmd + '"'
 
         totalAttempts = 5
+        hasSentinelKeyError = False
         for attempt in range(totalAttempts):
             self.info ("Starting slave - attempt #" + str(attempt))
 
@@ -478,6 +479,9 @@ class Worker:
             timeToSleep = random.randint(10, 60)
             self.info ("Error starting slave - wait " + str(timeToSleep) + " seconds for next attempt")
             sleep(timeToSleep)
+        if hasSentinelKeyError == True:
+            self.info("Received Sentinel error 5 times. Rebooting machine...")
+            os.system("sudo reboot")
 
     def execProcess (self, cmd, dir, user):
         global debug, sleepTime
