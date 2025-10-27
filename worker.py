@@ -286,7 +286,7 @@ class Worker:
             self.info("Worker running as user: " + current_user + " (uid=" + str(current_uid) + ", gid=" + str(current_gid) + ")")
         except Exception as e:
             self.info("Could not get process user info: " + str(e))
-
+            
         # Directory setup logic
         if not os.path.exists(dir):
             parent_dir = os.path.dirname(dir)
@@ -428,6 +428,10 @@ class Worker:
         #if sys.platform=="win32":
         #       cmd = '"' + cmd + '"'
 
+        timeToSleepBefore = random.randint(10, 20)
+        self.info ("Warm-up: sleep " + str(timeToSleepBefore) +" seconds before job starts")
+        sleep(timeToSleepBefore)
+
         totalAttempts = 5
         hasSentinelKeyError = False
         for attempt in range(totalAttempts):
@@ -479,9 +483,23 @@ class Worker:
             timeToSleep = random.randint(10, 60)
             self.info ("Error starting slave - wait " + str(timeToSleep) + " seconds for next attempt")
             sleep(timeToSleep)
-        if hasSentinelKeyError == True:
-            self.info("Received Sentinel error 5 times. Rebooting machine...")
-            os.system("sudo reboot")
+        #if hasSentinelKeyError == True:
+        #    self.info("AAAAAAAAAAAAAAAA Received Sentinel error 5 times. Rebooting machine...")
+        #    try:
+        #        result = subprocess.run(
+        #            ["systemctl", "reboot"],  # No sudo needed
+        #            stdout=subprocess.PIPE,
+        #            stderr=subprocess.PIPE,
+        #            universal_newlines=True,
+        #            timeout=5
+        #        )
+        #        self.info(f"Return code: {result.returncode}")
+        #        self.info(f"STDOUT: {result.stdout}")
+        #        self.info(f"STDERR: {result.stderr}")
+        #    except subprocess.TimeoutExpired:
+        #        self.info("Reboot command timed out (possibly waiting for password)")
+        #    except Exception as e:
+        #        self.info(f"Error during reboot: {e}")
 
     def execProcess (self, cmd, dir, user):
         global debug, sleepTime
@@ -689,4 +707,5 @@ def main ():
 
 if not service:
     main()
+
 
