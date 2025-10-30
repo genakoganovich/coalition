@@ -286,7 +286,7 @@ class Worker:
             self.info("Worker running as user: " + current_user + " (uid=" + str(current_uid) + ", gid=" + str(current_gid) + ")")
         except Exception as e:
             self.info("Could not get process user info: " + str(e))
-            
+
         # Directory setup logic
         if not os.path.exists(dir):
             parent_dir = os.path.dirname(dir)
@@ -483,23 +483,10 @@ class Worker:
             timeToSleep = random.randint(10, 60)
             self.info ("Error starting slave - wait " + str(timeToSleep) + " seconds for next attempt")
             sleep(timeToSleep)
-        #if hasSentinelKeyError == True:
-        #    self.info("AAAAAAAAAAAAAAAA Received Sentinel error 5 times. Rebooting machine...")
-        #    try:
-        #        result = subprocess.run(
-        #            ["systemctl", "reboot"],  # No sudo needed
-        #            stdout=subprocess.PIPE,
-        #            stderr=subprocess.PIPE,
-        #            universal_newlines=True,
-        #            timeout=5
-        #        )
-        #        self.info(f"Return code: {result.returncode}")
-        #        self.info(f"STDOUT: {result.stdout}")
-        #        self.info(f"STDERR: {result.stderr}")
-        #    except subprocess.TimeoutExpired:
-        #        self.info("Reboot command timed out (possibly waiting for password)")
-        #    except Exception as e:
-        #        self.info(f"Error during reboot: {e}")
+
+        if hasSentinelKeyError == True:
+            seft.ErrorCode = -555;
+            return int(self.ErrorCode)
 
     def execProcess (self, cmd, dir, user):
         global debug, sleepTime
@@ -615,16 +602,6 @@ class Worker:
             # Set the working directory in the main thead
             _thread.start_new_thread (self.execProcess, (_cmd, _dir, user))
 
-            # Flush the logs
-            while (self.Working):
-                self.heartbeat (jobId, False)
-                time.sleep (sleepTime)
-
-            # Flush for real for the last time
-            self.heartbeat (jobId, True)
-
-            debugOutput ("Finished job " + str (jobId) + " (code " + str (self.ErrorCode) + ") : " + _cmd)
-
             # Function to end the job
             def endFunc (serverConn):
                 params = urllib.parse.urlencode ({
@@ -634,6 +611,34 @@ class Worker:
                 })
                 serverConn.request ("POST", "/workers/endjob", params, Headers)
                 serverConn.getresponse()
+
+            # Flush the logs
+            while (self.Working):
+                self.heartbeat (jobId, False)
+                time.sleep (sleepTime)
+
+            if self.ErrorCode == -555:
+                self.info("Received Sentinel error 5 times. Rebooting machine...")
+                try:
+                    result = subprocess.run(
+                        ["systemctl", "reboot"],  # No sudo needed
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        universal_newlines=True,
+                        timeout=5
+                    )
+                    self.info(f"Return code: {result.returncode}")
+                    self.info(f"STDOUT: {result.stdout}")
+                    self.info(f"STDERR: {result.stderr}")
+                except subprocess.TimeoutExpired:
+                    self.info("Reboot command timed out (possibly waiting for password)")
+                except Exception as e:
+                    self.info(f"Error during reboot: {e}")
+
+            # Flush for real for the last time
+            self.heartbeat (jobId, True)
+
+            debugOutput ("Finished job " + str (jobId) + " (code " + str (self.ErrorCode) + ") : " + _cmd)
 
             # Block until this message to handled by the server
             workerRun (self, endFunc, True)
@@ -707,5 +712,3 @@ def main ():
 
 if not service:
     main()
-
-
