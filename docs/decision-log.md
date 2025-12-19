@@ -117,3 +117,30 @@ API is a custom HTTP RPC:
 - routing is based on URL paths (e.g. /json/addjob)
 - parameters are passed via query string (request.args)
 - request body is not used
+
+## 2025-12-19 — addjobbulknew error behavior
+
+### Observation
+Endpoint /json/addjobbulknew behaves inconsistently on invalid input:
+- Logical validation errors return HTTP 200 with body "False"
+- Invalid bulkSize type (non-integer) raises ValueError and results in HTTP 500
+
+### Decision
+Characterization tests explicitly document this behavior.
+No normalization or error handling is added at this stage.
+
+### Rationale
+Tests must reflect real legacy behavior before refactoring.
+
+## 2025-12-19 — XML-RPC error matrix
+
+### Decision
+Add characterization tests for /xmlrpc error behavior.
+
+### Rationale
+The server overrides xmlrpc.XMLRPC.render and does not follow standard XML-RPC.
+Fault codes and HTTP status behavior must be documented before refactoring.
+
+### Consequences
+Tests assert presence of faults and HTTP status,
+not compliance with XML-RPC specification.
