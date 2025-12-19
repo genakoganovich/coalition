@@ -1,19 +1,33 @@
-# server_tests
+# Server Tests
 
-This folder contains automated tests for the Coalition server.
+This directory contains automated tests for the Coalition server.
 
-## Tests included
+The tests focus on **black-box behavior**: the server is started as an external
+process and verified through real HTTP requests, without mocking internal
+components.
 
-1. **test_startup.py**  
-   Checks that the server starts and responds to HTTP requests.
+---
 
-2. **test_endpoints.py**  
-   Ensures key endpoints return valid HTTP codes.
+## Test Scope
 
-3. **test_add_and_get_job.py**  
-   Tests adding a job via `/json/addjob` and retrieving it via `/json/getjobs`.
+Currently, the tests cover:
 
-## How to run tests
+- Server startup and shutdown
+- Basic HTTP availability checks
+- Endpoint reachability (protocol-level, not business logic)
+
+These tests are intended to act as **regression tests** during refactoring and
+modernization of the server codebase.
+
+---
+
+## Requirements
+
+- Python 3.9+
+- pytest
+- requests
+
+Install dependencies:
 
 ```bash
-pytest server_tests/ -v
+pip install pytest requests
