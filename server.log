@@ -10005,3 +10005,29 @@ OSError: [Errno 98] Address already in use
   defer.returnValue(result)
 /home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
   defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
