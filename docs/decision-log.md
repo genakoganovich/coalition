@@ -144,3 +144,19 @@ Fault codes and HTTP status behavior must be documented before refactoring.
 ### Consequences
 Tests assert presence of faults and HTTP status,
 not compliance with XML-RPC specification.
+
+## 2025-12-19 — Workers error matrix
+
+### Decision
+Characterization tests for /workers start/stop edge cases:
+- Starting a worker twice
+- Stopping a non-existent worker
+
+### Rationale
+Server legacy behavior may not forbid repeated start or stop.
+Tests capture real behavior before refactoring.
+
+### Consequences
+HTTP responses (200/405) are documented.
+Future refactoring can rely on these assertions.
+
