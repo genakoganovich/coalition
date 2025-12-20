@@ -10659,3 +10659,1028 @@ OSError: [Errno 98] Address already in use
   defer.returnValue(result)
 /home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
   defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+Can't add job to parent 1 type <class 'int'>
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:432: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2245: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:507: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+VAR: ID ATTR: 2 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473484 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 3 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473773 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 4 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.147398 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 5 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.6044025 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 6 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.604599 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 7 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.60479 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 2 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473484 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 3 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473773 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 4 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.147398 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 5 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.6044025 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 6 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.604599 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 7 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.60479 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 2 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473484 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 3 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473773 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 4 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.147398 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 5 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.6044025 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 6 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.604599 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 7 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.60479 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+VAR: ID ATTR: 2 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473484 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 3 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473773 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 4 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.147398 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 5 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.6044025 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 6 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.604599 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 7 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.60479 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+/home/gena/PycharmProjects/coalition/server.py:537: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+VAR: ID ATTR: 2 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473484 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 3 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.1473773 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 4 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225572.147398 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 5 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=0 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.6044025 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 6 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=1 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.604599 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+VAR: ID ATTR: 7 TYPE: <class 'int'>
+VAR: Title ATTR: TestBulkJob TYPE: <class 'str'>
+VAR: Command ATTR: echo hello --bulk_id=2 TYPE: <class 'str'>
+VAR: Dir ATTR: . TYPE: <class 'str'>
+VAR: State ATTR: WAITING TYPE: <class 'str'>
+VAR: Worker ATTR:  TYPE: <class 'str'>
+VAR: StartTime ATTR: 1766225683.60479 TYPE: <class 'float'>
+VAR: Duration ATTR: 0 TYPE: <class 'int'>
+VAR: Try ATTR: 0 TYPE: <class 'int'>
+VAR: Retry ATTR: 1 TYPE: <class 'int'>
+VAR: TimeOut ATTR: 0 TYPE: <class 'int'>
+VAR: Priority ATTR: 1000 TYPE: <class 'int'>
+VAR: Affinity ATTR:  TYPE: <class 'str'>
+VAR: User ATTR: b'' TYPE: <class 'str'>
+VAR: Finished ATTR: 0 TYPE: <class 'int'>
+VAR: Errors ATTR: 0 TYPE: <class 'int'>
+VAR: Working ATTR: 0 TYPE: <class 'int'>
+VAR: Total ATTR: 0 TYPE: <class 'int'>
+VAR: TotalFinished ATTR: 0 TYPE: <class 'int'>
+VAR: TotalErrors ATTR: 0 TYPE: <class 'int'>
+VAR: TotalWorking ATTR: 0 TYPE: <class 'int'>
+VAR: Dependencies ATTR: [] TYPE: <class 'list'>
+VAR: URL ATTR:  TYPE: <class 'str'>
+VAR: LocalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: GlobalProgress ATTR: None TYPE: <class 'NoneType'>
+VAR: maxWorkers ATTR: 0 TYPE: <class 'int'>
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)
+/home/gena/PycharmProjects/coalition/server.py:462: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(result)
+/home/gena/PycharmProjects/coalition/server.py:2303: DeprecationWarning: twisted.internet.defer.returnValue was deprecated in Twisted 24.7.0; please use standard return statement instead
+  defer.returnValue(True)

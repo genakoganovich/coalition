@@ -160,3 +160,70 @@ Tests capture real behavior before refactoring.
 HTTP responses (200/405) are documented.
 Future refactoring can rely on these assertions.
 
+# Decision Log
+
+## 2025-12-20 — Job tree and bulk creation behavior
+
+### Context
+- Server stores jobs in `State.Jobs` as a dictionary of `Job` objects.  
+- Root job has ID 0; all other jobs may reference a parent via `Parent` attribute.  
+- Bulk jobs are created via `/json/addjobbulknew?parent=X&bulkSize=N`.  
+- `/json/getjobs?id=X` traverses job children and parent hierarchy.
+
+### Observation
+- If `parent=0`, bulk jobs can still be created.  
+- Bulk jobs receive unique IDs and append `--bulk_id=i` to `Command`.  
+- If `parent` does not exist in `State.Jobs`, `addjobbulknew` returns `False`.  
+- `getjobs` crashes with `KeyError` if a job’s `Parent` is `None`.  
+- After server restart, `State.Jobs` contains only the root job (ID 0).  
+
+### Decisions
+- Document `addjobbulknew` behavior with valid and invalid parents.  
+- Document `getjobs` behavior and its reliance on valid Parent links.  
+- Characterization tests should cover:
+  - Bulk creation with valid parent
+  - Bulk creation with invalid parent
+  - Retrieval via `/json/getjobs`
+  - Behavior after server restart
+  - Parent-child traversal and edge case `Parent=None`  
+
+### Rationale
+- Preserves legacy behavior in tests.  
+- Ensures safe refactoring of job tree handling.  
+- Highlights potential crash scenarios for future improvement.  
+
+### Consequences
+- Tests will assert current behavior without fixing crashes.  
+- Bulk jobs’ `Command` field includes `--bulk_id=i` as expected.  
+- Refactoring can later normalize `Parent=None` handling.  
+
+---
+
+## 2025-12-20 — Worker state verification
+
+### Context
+- Workers are listed via `/json/getworkers`.  
+- Worker object fields: Name, Affinity, State, Finished, Error, LastJob, Load, FreeMemory, TotalMemory, Active.  
+- Workers can be started and stopped manually or via server logic.
+
+### Observation
+- Worker shows `Active=true` when waiting, even with no jobs assigned.  
+- Worker’s `Load` reflects CPU usage; `Finished` and `Error` counters track completed jobs.  
+- Stopping a non-existent worker does not crash the server; returns HTTP 200.  
+- Starting the same worker twice leaves state unchanged.
+
+### Decisions
+- Document legacy Worker behavior in characterization tests.  
+- Capture worker edge cases:
+  - Double start
+  - Stop non-existent worker
+  - Empty job queue
+- Do not modify legacy Worker logic yet.
+
+### Rationale
+- Ensures tests reflect actual server behavior.  
+- Allows future refactoring without breaking existing Worker handling.
+
+### Consequences
+- Tests verify Worker state fields and edge cases.  
+- Server remains compatible with existing job scheduling logic.

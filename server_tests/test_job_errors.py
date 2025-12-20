@@ -5,12 +5,14 @@ from .conftest import BASE_URL, start_server
 # -------------------------------
 # /json/addjob error codes mapping
 # -------------------------------
+
+# Mapping of description -> server-returned error code for addjob
 ADDJOB_ERROR_CODES = {
-    "missing title": "15",
-    "missing cmd": "16",
-    "empty title": "17",
-    "empty cmd": "18",
-    "no parameters": "19",
+    "missing title": "8",
+    "missing cmd": "9",
+    "empty title": "10",
+    "empty cmd": "11",
+    "no parameters": "12",
 }
 
 @pytest.mark.parametrize(
